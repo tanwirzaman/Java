@@ -1,0 +1,41 @@
+
+
+public class CalculateRuns {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s="abbcaaabbbbbcc";
+		System.out.println("Output: "+calculateRun(s));
+	}
+	
+	public static String calculateRun(String s) {
+		char runChar = s.charAt(0);
+		int maxRun = 1;
+		int currentRun = 1;
+		for (int i = 1; i < s.length(); i++) {
+			if (s.charAt(i) != s.charAt(i-1)) {
+				if (currentRun > maxRun) {
+					runChar = s.charAt(i-1);
+					maxRun = currentRun;
+				}
+				currentRun = 1;
+			} else {
+				currentRun++;
+			}
+		
+		if (currentRun > maxRun) {
+			runChar = s.charAt(i-1);
+			maxRun = currentRun;
+		}
+		}
+		StringBuilder res = new StringBuilder();
+		for (int i = 0; i < maxRun; i++) {
+			res.append(runChar);
+		}
+		return res.toString();
+	}
+
+}
