@@ -1,0 +1,44 @@
+package org.zedco;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PrimeNumbers {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		int num=21;
+		List<Integer> calcPrimeNumbers = calcPrimeNumbers(num);
+		System.out.print("Prime between 0 and "+num+" : ");
+	    for (Integer integer : calcPrimeNumbers) {
+	      System.out.print(integer+" ");
+	    }
+	    
+	  }
+
+	private static List<Integer> calcPrimeNumbers(int num) {
+		List<Integer> primes=new ArrayList<Integer>();
+		boolean[] isPrime=new boolean[num+1];
+		
+		for(int i=0;i<num;i++)
+			isPrime[i]=true;
+		
+		for(int i=2;i<=num;i++)
+		{
+			if(isPrime[i])
+			{
+				primes.add(i);
+				for(int j=i+1;j<=num;j++)
+				{
+					if(j%i==0)
+						isPrime[j]=false;
+				}
+			}
+		}
+		return primes;
+	}
+	
+
+}
