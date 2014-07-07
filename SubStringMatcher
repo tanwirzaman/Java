@@ -1,0 +1,55 @@
+
+public class StringMatcher {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		boolean result=subStringMatch("bat","beats");
+		System.out.println("result: "+result);
+
+	}
+	
+	public static boolean subStringMatch(String s1,String s2)
+	{
+		boolean res=false;
+		
+		if(s1==null && s2==null)
+			res=true;
+		if(s1==null && s2!=null)
+			res=true; 
+		if(s1!=null && s2==null)
+			res=false;
+		if(s1=="" && s2=="")
+			res=true;
+		if(s1=="" && s2!="")
+			res=true;
+		/*if(s2.contains(s1))
+			res=true;*/
+		char[] arr1=s1.toCharArray();
+		char[] arr2=s2.toCharArray();
+		
+		int i=0,j=0;
+		while(i<=arr2.length)
+		{			
+			if(j==arr1.length )
+			{
+				res=true;
+				break;
+			}
+			if( i!=arr2.length && arr1[j]==arr2[i])
+			{				
+				i++;
+				j++;
+			}
+			else
+			{
+				i++;
+				j=0;
+			}
+		}
+		
+		return res;
+	}
+
+}
