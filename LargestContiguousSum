@@ -1,0 +1,49 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package interviewprep;
+
+/**
+ *
+ * @author Tanwir
+ */
+public class LargestSum {
+    
+    static int seqStart=0;
+    static int seqEnd=0;
+    
+public static void main(String s[])
+{
+    int[] a={2,-8,3,-2,4,-10,-12};
+    int sum=maximumSubsequenceSum(a);
+    System.out.println("Sum "+sum+ " at "+seqStart+ " to "+seqEnd);
+}    
+
+    
+public static int maximumSubsequenceSum( int [ ] a )
+ {
+ int maxSum = 0;
+ int thisSum = 0;
+
+ for( int i = 0, j = 0; j < a.length; j++ )
+ {
+ thisSum += a[ j ];
+
+ if( thisSum > maxSum )
+ {
+ maxSum = thisSum;
+ seqStart = i;
+ seqEnd = j;
+ }
+ else if( thisSum < 0 )
+ {
+ i = j + 1;
+ thisSum = 0;
+ }
+ }
+
+ return maxSum;
+ }
+}
+
