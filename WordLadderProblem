@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.SplittableRandom;
+
+/**
+ * Created by Tanwir on 5/30/2018.
+ */
+
+class WordNode
+{
+    String word;
+    int steps;
+    WordNode(String w, int s)
+    {
+        this.word = w;
+        this.steps = s;
+    }
+}
+
+public class WordLadder {
+    public static void main(String[] args) {
+        String begWord = "hit";
+        String endWord = "cog";
+        ArrayList<String> list = new ArrayList<>();
+        list.add("hot");
+        list.add("dot");
+        list.add("dog");
+        list.add("lot");
+        list.add("log");
+        list.add("cog");
+
+        int count = countTransforms(begWord, endWord, list);
+        System.out.println(" count: " + count);
+    }
+
+
+
+    private static int countTransforms(String begWord, String endWord, ArrayList<String> list) {
+        Queue<WordNode> queue = new LinkedList<>();
+        WordNode w = new WordNode(begWord, 1);
+        queue.add(w);
+
+        while(!queue.isEmpty())
+        {
+            WordNode top = queue.remove();
+            System.out.println(top.word);
+            if(top.word.equals(endWord))
+            {
+                return top.steps;
+            }
+            char[] arr =top.word.toCharArray();
+            for(int i=0; i< arr.length; i++)
+            {
+                char temp = arr[i];
+                for(char c='a'; c <='z'; c++)
+                {
+
+                    arr[i] = c;
+                    if(list.contains(new String(arr)))
+                    {
+                        queue.add(new WordNode(new String(arr), top.steps + 1));
+                        break;
+                    }
+                }
+                arr[i] = temp;
+            }
+        }
+        return -1;
+
+    }
+
+}
