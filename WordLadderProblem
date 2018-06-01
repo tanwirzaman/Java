@@ -57,9 +57,11 @@ public class WordLadder {
                 {
 
                     arr[i] = c;
-                    if(list.contains(new String(arr)))
+                    String testStr = new String(arr);
+                    if(list.contains(testStr))
                     {
                         queue.add(new WordNode(new String(arr), top.steps + 1));
+                        list.remove(testStr);
                         break;
                     }
                 }
